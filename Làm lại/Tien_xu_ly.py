@@ -55,8 +55,11 @@ def toi_da_hoa_anh(img):
     structuringElement = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
     # tophat (phép trừ ảnh của ảnh ban đầu với ảnh sau khi thực hiện phép mở) ==> nổi bật nhưng chi tiết trắng trong nền tối
     img_top_hat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, structuringElement, iterations=10) # số lần lặp lại cho phép biến đổi hình thái học iterations=10
+    cv2.imwrite("result/anhsautophat.png", img_top_hat)
+    
     # backhat (Nổi bật chi tiết tối trong nền sáng)
     img_back_hat = cv2.morphologyEx(img,cv2.MORPH_BLACKHAT, structuringElement, iterations=10)
+    cv2.imwrite("result/anhsaubackhat.png", img_back_hat)
     # áp dụng công thức + top - back:
     img_sau_chinh = cv2.add(img,img_top_hat)
     img_sau_chinh = cv2.subtract(img_sau_chinh,img_back_hat)
