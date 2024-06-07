@@ -1,0 +1,23 @@
+if(len(approx)==4):
+    # Tính toán tọa độ 4 góc của hình chữ nhật
+        top_left = (x, y)
+        top_right = (x + w, y)
+        bottom_right = (x + w, y + h)
+        bottom_left = (x, y + h)
+
+        # Tính góc giữa các cạnh của hình chữ nhật
+        angle_top = np.degrees(np.arctan2(top_right[1] - top_left[1], top_right[0] - top_left[0]))
+        angle_right = np.degrees(np.arctan2(top_right[1] - bottom_right[1], top_right[0] - bottom_right[0]))
+        angle_bottom = np.degrees(np.arctan2(bottom_right[1] - bottom_left[1], bottom_right[0] - bottom_left[0]))
+        angle_left = np.degrees(np.arctan2(bottom_left[1] - top_left[1], bottom_left[0] - top_left[0]))
+
+        # Kiểm tra xem các góc có nằm trong khoảng từ 60 đến 130 độ hay không
+        if 60 <= np.abs(angle_top) <= 130 and 60 <= np.abs(angle_right) <= 130 and 60 <= np.abs(angle_bottom) <= 130 and 60 <= np.abs(angle_left) <= 130:
+            screenCnt.append(approx)
+            cv2.putText(imgGray, str(len(approx.copy())), (x, y), cv2.FONT_HERSHEY_DUPLEX, 2, (0, 255, 0), 3)
+            print("có vùng thỏa mãn yêu cầu")
+            break
+        else:
+            print("không có ảnh nào có 4 góc thỏa mãn yêu cầu")
+    else:
+        print("không có contour nào có 4 góc được tìm thấy")
