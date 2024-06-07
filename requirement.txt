@@ -1,2 +1,0 @@
-pip install tensorflow
-( Ko install riêng keras vì trong flow có sãn keras 3.3.3 rồi)
