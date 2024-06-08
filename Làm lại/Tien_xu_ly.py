@@ -20,7 +20,7 @@ def tienxuly(img):
     # lưu vào file trong folder result  tên là anhsaucuonghoa.jpg
     cv2.imwrite("result/anhsaucuonghoa.png", toidahoa)
     dai, rong = anh_xam.shape
-    anh_sau_khi_lam_min = cv2.GaussianBlur(toidahoa,GAUSIAN_SMOOTH_FILTER_SIZE,0)
+    anh_sau_khi_lam_min = cv2.GaussianBlur(toidahoa,GAUSIAN_SMOOTH_FILTER_SIZE,1.4)
     # tạo ảnh nhị phân
     anh_nhi_phan = cv2.adaptiveThreshold(anh_sau_khi_lam_min,255.0,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,ADAPTIVE_THRESH_BLOCK_SIZE,ADAPTIVE_THRESH_WEIGHT)
     return anh_xam, anh_nhi_phan
