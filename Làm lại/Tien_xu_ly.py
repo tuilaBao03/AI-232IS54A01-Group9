@@ -69,3 +69,28 @@ def toi_da_hoa_anh(img):
     return img_sau_chinh
 
 
+import cv2
+import numpy as np
+def lam_net_anh(path):
+    # Đọc ảnh
+    image = cv2.imread(path)
+    name = path-"image/"-".jpg"
+
+    # Tạo kernel làm sắc nét
+    sharpening_kernel = np.array([
+        [-1, -1, -1],
+        [-1,  9, -1],
+        [-1, -1, -1]
+    ])
+
+    # Áp dụng bộ lọc làm sắc nét
+    sharpened_image = cv2.filter2D(image, -1, sharpening_kernel)
+
+    # Hiển thị ảnh gốc và ảnh đã làm nét
+
+
+
+    # Lưu ảnh đã làm nét
+    cv2.imwrite('filter_image/sharpened_image_{name}.jpg', sharpened_image)
+    return sharpened_image
+
